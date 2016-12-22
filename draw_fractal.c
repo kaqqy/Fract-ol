@@ -6,7 +6,7 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 21:13:12 by jshi              #+#    #+#             */
-/*   Updated: 2016/12/21 20:50:24 by jshi             ###   ########.fr       */
+/*   Updated: 2016/12/21 21:19:35 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@ static void	clear_image(t_env *env)
 				env->data[env->sl * i + env->bpp * j + k] = 0;
 		}
 	}
-}
-
-static int	get_color(int n)
-{
-	n %= 1530;
-	return ((0xff << ((2 - n / 510) * 8)) + (255 -
-			MIN(n % 510, (1530 - n) % 510)) * (1 << (8 * ((n / 255) % 3))));
 }
 
 /*
@@ -85,7 +78,7 @@ static void	draw_partial(t_tdata *thread)
 		b[0] = eval_expr(&env->start, (t_triple){b[0], b[1], b[2]}, a[4]);
 		draw_partial2(env, a, b);
 		draw_point(env, a[2], a[1], (a[3] == env->iter) ? 0 :
-				get_color(30 * (a[3] + env->color_rot)));
+				env->colors[(30 * (a[3] + env->color_rot)) % 1530]);
 	}
 	free(thread);
 }

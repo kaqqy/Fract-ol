@@ -6,14 +6,15 @@
 #    By: jshi <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/01 23:13:33 by jshi              #+#    #+#              #
-#    Updated: 2016/12/21 19:42:56 by jshi             ###   ########.fr        #
+#    Updated: 2016/12/21 21:32:06 by jshi             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
 FILES = main exit c_oper1 c_oper2 c_oper3 c_oper4 c_oper5 c_oper6 oper_arr \
-		parse_expr parse_expr2 eval_expr draw_point draw_fractal handle_hooks
+		parse_expr parse_expr2 eval_expr draw_point draw_fractal handle_hooks \
+		info
 SRC_FILES = $(addsuffix .c,$(FILES))
 OBJ_FILES = $(addsuffix .o,$(FILES))
 

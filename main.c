@@ -6,11 +6,23 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 23:19:35 by jshi              #+#    #+#             */
-/*   Updated: 2016/12/21 20:21:20 by jshi             ###   ########.fr       */
+/*   Updated: 2016/12/21 21:23:38 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+static void	init_colors(t_env *env)
+{
+	int		i;
+
+	env->colors = (int*)malloc(sizeof(*env->colors) * 1530);
+	i = -1;
+	while (++i < 1530)
+		env->colors[i] = (0xff << ((2 - i / 510) * 8)) +
+			(255 - MIN(i % 510, (1530 - i) % 510)) *
+			(1 << (8 * ((i / 255) % 3)));
+}
 
 static void	init_env(t_env *env)
 {
@@ -35,6 +47,9 @@ static void	init_env(t_env *env)
 	env->c = (t_complex){env->origin.re + (WIN_LEN / 2) * env->pixel_len,
 			env->origin.im + (WIN_WID / 2) * env->pixel_len};
 	env->prec = 0.0;
+	init_colors(env);
+	if (!env->threads || !env->colors)
+		exit_prog(env, "Error: Malloc failed in init_env()\n");
 }
 
 static void	parse_input2(t_env *env)
@@ -92,12 +107,6 @@ static void	parse_input(t_env *env, char **argv)
 	parse_input2(env);
 }
 
-static void	disp_usage(t_env *env)
-{
-	ft_printf("Usage: ./fractol function starting_value bound iterations\n");
-	exit_prog(env, "");
-}
-
 int			main(int argc, char **argv)
 {
 	t_env	env;
@@ -113,10 +122,12 @@ int			main(int argc, char **argv)
 		exit_prog(&env, "Error: mlx_new_image() returned NULL\n");
 	env.data = mlx_get_data_addr(env.img, &env.bpp, &env.sl, &env.endian);
 	env.bpp /= 8;
+	disp_info();
 	parse_input(&env, argv);
 	draw_fractal(&env);
 	mlx_key_hook(env.win, &key_release_hook, &env);
 	mlx_mouse_hook(env.win, &mouse_press_hook, &env);
+	mlx_expose_hook(env.win, &expose_hook, &env);
 	mlx_hook(env.win, 5, 0, &mouse_release_hook, &env);
 	mlx_hook(env.win, 6, 0, &motion_hook, &env);
 	mlx_loop(env.mlx);
