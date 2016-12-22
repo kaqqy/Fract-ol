@@ -6,7 +6,7 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 23:19:35 by jshi              #+#    #+#             */
-/*   Updated: 2016/12/21 21:23:38 by jshi             ###   ########.fr       */
+/*   Updated: 2016/12/21 23:41:49 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int			main(int argc, char **argv)
 		exit_prog(&env, "Error: mlx_new_image() returned NULL\n");
 	env.data = mlx_get_data_addr(env.img, &env.bpp, &env.sl, &env.endian);
 	env.bpp /= 8;
-	disp_info();
+	disp_controls();
 	parse_input(&env, argv);
 	draw_fractal(&env);
 	mlx_key_hook(env.win, &key_release_hook, &env);

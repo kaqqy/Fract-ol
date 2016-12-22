@@ -6,7 +6,7 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 23:20:21 by jshi              #+#    #+#             */
-/*   Updated: 2016/12/21 21:22:54 by jshi             ###   ########.fr       */
+/*   Updated: 2016/12/21 21:36:36 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,5 @@ int				motion_hook(int x, int y, t_env *env);
 int				expose_hook(t_env *env);
 int				key_release_hook(int k, t_env *env);
 void			disp_usage(t_env *env);
-void			disp_info(void);
+void			disp_controls(void);
 #endif
