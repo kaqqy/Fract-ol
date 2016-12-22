@@ -6,7 +6,7 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 15:35:45 by jshi              #+#    #+#             */
-/*   Updated: 2016/12/08 17:17:41 by jshi             ###   ########.fr       */
+/*   Updated: 2016/12/21 20:49:01 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void		parse_expr0(char *str, t_expr *expr, int ind, int i)
 		val /= 10;
 	(str[len - 1] == 'i' && val == 0.0) ? (val = 1.0) : 0;
 	if (str[len - 1] == 'i')
-		expr->opers[ind].val = c_make(0, val);
+		expr->opers[ind].val = (t_complex){0, val};
 	else
-		expr->opers[ind].val = c_make(val, 0);
+		expr->opers[ind].val = (t_complex){val, 0};
 }

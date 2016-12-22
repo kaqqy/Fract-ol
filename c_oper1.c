@@ -6,16 +6,11 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 17:33:35 by jshi              #+#    #+#             */
-/*   Updated: 2016/12/15 22:24:25 by jshi             ###   ########.fr       */
+/*   Updated: 2016/12/21 20:06:08 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-t_complex	c_make(double re, double im)
-{
-	return ((t_complex){re, im});
-}
 
 t_complex	c_add(t_complex a, t_complex b)
 {

@@ -6,7 +6,7 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 23:20:21 by jshi              #+#    #+#             */
-/*   Updated: 2016/12/15 22:14:57 by jshi             ###   ########.fr       */
+/*   Updated: 2016/12/21 20:08:50 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ typedef struct	s_complex
 	double	re;
 	double	im;
 }				t_complex;
+
+typedef struct	s_triple
+{
+	t_complex	z;
+	t_complex	p;
+	t_complex	c;
+}				t_triple;
 
 typedef struct	s_oper
 {
@@ -61,6 +68,7 @@ typedef struct	s_env
 	t_expr		ineq_r;
 	int			comp;
 	int			iter;
+	t_complex	c;
 	int			cx;
 	int			cy;
 	int			color_rot;
@@ -68,16 +76,16 @@ typedef struct	s_env
 	t_complex	origin;
 	int			num_threads;
 	pthread_t	*threads;
+	int			move;
+	double		prec;
 }				t_env;
 
 typedef struct	s_tdata
 {
 	t_env		*env;
 	int			ind;
-	int			count;
 }				t_tdata;
 
-t_complex		c_make(double re, double im);
 t_complex		c_add(t_complex a, t_complex b);
 t_complex		c_sub(t_complex a, t_complex b);
 t_complex		c_mult(t_complex a, t_complex b);
@@ -111,7 +119,11 @@ void			parse_expr2(char *str, t_expr *expr, int ind, int i);
 void			parse_expr1(char *str, t_expr *expr, int ind, int i);
 void			parse_expr0(char *str, t_expr *expr, int ind, int i);
 char			*clean_expr(char *str);
-t_complex		eval_expr(t_expr *expr, t_complex z, t_complex p, t_complex c, int ind);
+t_complex		eval_expr(t_expr *expr, t_triple vars, int ind);
 void			draw_point(t_env *env, int x, int y, int color);
 void			draw_fractal(t_env *env);
+int				mouse_press_hook(int b, int x, int y, t_env *env);
+int				mouse_release_hook(int b, int x, int y, t_env *env);
+int				motion_hook(int x, int y, t_env *env);
+int				key_release_hook(int k, t_env *env);
 #endif
