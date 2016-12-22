@@ -6,7 +6,7 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 23:20:21 by jshi              #+#    #+#             */
-/*   Updated: 2016/12/21 20:08:50 by jshi             ###   ########.fr       */
+/*   Updated: 2016/12/21 21:22:54 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct	s_env
 	pthread_t	*threads;
 	int			move;
 	double		prec;
+	int			*colors;
 }				t_env;
 
 typedef struct	s_tdata
@@ -125,5 +126,8 @@ void			draw_fractal(t_env *env);
 int				mouse_press_hook(int b, int x, int y, t_env *env);
 int				mouse_release_hook(int b, int x, int y, t_env *env);
 int				motion_hook(int x, int y, t_env *env);
+int				expose_hook(t_env *env);
 int				key_release_hook(int k, t_env *env);
+void			disp_usage(t_env *env);
+void			disp_info(void);
 #endif
