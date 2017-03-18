@@ -6,14 +6,14 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 23:20:21 by jshi              #+#    #+#             */
-/*   Updated: 2016/12/21 21:36:36 by jshi             ###   ########.fr       */
+/*   Updated: 2017/01/17 12:55:59 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define WIN_LEN 961
-# define WIN_WID 961
+# define WIN_LEN 481
+# define WIN_WID 481
 
 # include <unistd.h>
 # include <stdlib.h>
