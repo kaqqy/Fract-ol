@@ -31,7 +31,7 @@ MLX_HDR = -I$(MLX_PATH)
 HDR_PATH = .
 HDR = -I$(HDR_PATH)
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -O3
 
 
 .PHONY: all clean fclean re
@@ -39,7 +39,7 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES) $(LIBFT) $(MLX)
-	gcc -o $(NAME) $(OBJ_FILES) $(LIBFT_LINK) -lft $(MLX_LINK) -lmlx \
+	gcc $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(LIBFT_LINK) -lft $(MLX_LINK) -lmlx \
 		-framework OpenGL -framework AppKit
 
 %.o: %.c
